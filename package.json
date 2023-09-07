@@ -1,0 +1,38 @@
+{
+  "name": "backend_valhalla",
+  "version": "0.0.1",
+  "description": "proyecto de backend y control de API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaderM28/BackEnd_Valhalla.git"
+  },
+  "keywords": [
+    "backend",
+    "valhalla"
+  ],
+  "author": "Jader Montoya",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.20.1"
+  },
+  "bugs": {
+    "url": "https://github.com/JaderM28/BackEnd_Valhalla/issues"
+  },
+  "homepage": "https://github.com/JaderM28/BackEnd_Valhalla#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
