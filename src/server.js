@@ -20,6 +20,7 @@ class Server{
         this.port = process.env.PORT,
         this.usuarioPath = '/ruta/usuarios',
         this.conectarDB(),
+        this.middlewares();
         this.routes()
     }
 
@@ -31,6 +32,13 @@ class Server{
 
     routes(){
         this.app.use(this.usuarioPath, require('./routes/usuarios.route'))
+    }
+
+    middlewares() {
+        this.app.use(cors()); // Habilita CORS para todas las rutas
+        this.app.use(bodyParser.urlencoded({ extended: true }));
+        this.app.use(bodyParser.json());
+        this.app.use(cookieParser());
     }
 
     async conectarDB(){
