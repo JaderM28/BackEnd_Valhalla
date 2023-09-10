@@ -1,20 +1,20 @@
 // Importamos los Modelos 
-const EmpleadoModelo = require('../models/empleados.model')
+const ClienteModelo = require('../models/clientes.model')
 
 // Funcion Get 
-const empleadoGet = async(req, res) => {
-    const empleados = await EmpleadoModelo.find();
+const clienteGet = async(req, res) => {
+    const clientes = await ClienteModelo.find();
     res.json({
-        empleados
+        clientes
     });
 }
 
 // Funcion Post 
-const empleadoPost = async(req, res) => {
+const clientePost = async(req, res) => {
     let messagge = 'Insercion Exitosa';
     try{
-        const empleados = new EmpleadoModelo(req.query);
-        await empleados.save();
+        const clientes = new ClienteModelo(req.query);
+        await clientes.save();
     }catch(error){
         messagge = error;
     }
@@ -24,11 +24,11 @@ const empleadoPost = async(req, res) => {
 }
 
 // Funcion Put
-const empleadoPut = async(req, res) => {
+const clientePut = async(req, res) => {
     let messagge = 'Modificacion Exitosa';
     const {_id, nombres, apellidos, telefono, tipoDocumento, numeroDocumento, genero, direccion, fechaNacimiento} = req.query
     try{
-        await EmpleadoModelo.updateMany(
+        await ClienteModelo.updateMany(
             {_id:_id}, 
             {$set: {nombres: nombres,
                 apellidos: apellidos,
@@ -47,11 +47,11 @@ const empleadoPut = async(req, res) => {
 }
 
 // Funcion Delete
-const empleadoDelete = async (req, res) => {
+const clienteDelete = async (req, res) => {
     const {_id} = req.query
     let messagge = 'Eliminacion Exitosa';
     try{
-        const empleados = await EmpleadoModelo.deleteOne({_id: _id})
+        const clientes = await ClienteModelo.deleteOne({_id: _id})
 
     }catch(error){
         messagge = error;
@@ -63,8 +63,8 @@ const empleadoDelete = async (req, res) => {
 
 // Exportacion
 module.exports = {
-    empleadoGet,
-    empleadoPost,
-    empleadoPut,
-    empleadoDelete
+    clienteGet,
+    clientePost,
+    clientePut,
+    clienteDelete
 }
