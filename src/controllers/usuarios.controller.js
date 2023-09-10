@@ -13,7 +13,7 @@ const usuarioGet = async(req, res) => {
 const usuarioPost = async(req, res) => {
     let messagge = 'Insercion Exitosa';
     try{
-        const usuario = new UsuarioModelo(req.query);
+        const usuario = new UsuarioModelo(req.body);
         await usuario.save();
 
     }catch(error){
@@ -27,7 +27,7 @@ const usuarioPost = async(req, res) => {
 // Funcion Put Actualizar
 const usuarioPut = async(req, res) => {
     let messagge = 'Modificacion Exitosa';
-    const {_id, nombres, apellidos, username, correo,  rol, estado, password} = req.query
+    const {_id, nombres, apellidos, username, correo,  rol, estado, password} = req.body
     try{
         await UsuarioModelo.updateMany(
             {_id:_id}, 
@@ -47,7 +47,7 @@ const usuarioPut = async(req, res) => {
 }
 // Funcion Delete Eliminar
 const usuarioDelete = async (req, res) => {
-    const {_id} = req.query
+    const {_id} = req.body
     let messagge = 'Eliminacion Exitosa';
     try{
         const usuario = await UsuarioModelo.deleteOne({_id: _id})
