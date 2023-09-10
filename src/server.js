@@ -20,6 +20,12 @@ class Server{
         this.port = process.env.PORT,
         this.usuarioPath = '/ruta/usuarios',
         this.empleadoPath = '/ruta/empleados',
+        this.clientePath = '/ruta/clientes',
+        this.categoriaPath = '/ruta/categorias',
+        this.servicioPath = '/ruta/servicios',
+        this.ventaPath = '/ruta/ventas',
+        this.rolPath = '/ruta/roles',
+        this.reservaPath = '/ruta/reservas',
         this.conectarDB(),
         this.middlewares();
         this.routes()
@@ -32,12 +38,12 @@ class Server{
     routes(){
         this.app.use(this.usuarioPath, require('./routes/usuarios.route'))
         this.app.use(this.empleadoPath, require('./routes/empleados.route'))
-        this.app.use(this.empleadoPath, require('./routes/clientes.route'))
-        this.app.use(this.empleadoPath, require('./routes/categorias.route'))
-        this.app.use(this.empleadoPath, require('./routes/servicios.route'))
-        this.app.use(this.empleadoPath, require('./routes/ventas.route'))
-        this.app.use(this.empleadoPath, require('./routes/roles.route'))
-        this.app.use(this.empleadoPath, require('./routes/reservas.route'))
+        this.app.use(this.clientePath, require('./routes/clientes.route'))
+        this.app.use(this.categoriaPath, require('./routes/categorias.route'))
+        this.app.use(this.servicioPath, require('./routes/servicios.route'))
+        this.app.use(this.ventaPath, require('./routes/ventas.route'))
+        this.app.use(this.rolPath, require('./routes/roles.route'))
+        this.app.use(this.reservaPath, require('./routes/reservas.route'))
     }
     middlewares() {
         this.app.use(cors()); // Habilita CORS para todas las rutas
