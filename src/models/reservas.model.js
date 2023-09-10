@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose')
 
-const ReservaSchema = schema({
+const ReservaSchema = Schema({
     nombreCliente: {
         type: String,
         required: [true, 'El Campo \'nombreCliente\' es Obligatorio']
