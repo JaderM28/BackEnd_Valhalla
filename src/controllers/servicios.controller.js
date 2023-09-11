@@ -13,7 +13,7 @@ const servicioGet = async(req, res) => {
 const servicioPost = async(req, res) => {
     let messagge = 'Insercion Exitosa';
     try{
-        const servicio = new ServicioModelo(req.query);
+        const servicio = new ServicioModelo(req.body);
         await servicio.save();
     }catch(error){
         messagge = error;
@@ -26,7 +26,7 @@ const servicioPost = async(req, res) => {
 // Funcion Put
 const servicioPut = async(req, res) => {
     let messagge = 'Modificacion Exitosa';
-    const {_id, nombre, duracion, precio, categoria, estado, descripcion} = req.query
+    const {_id, nombre, duracion, precio, categoria, estado, descripcion} = req.body
     try{
         await ServicioModelo.updateMany(
             {_id:_id}, 
@@ -47,7 +47,7 @@ const servicioPut = async(req, res) => {
 
 // Funcion Delete
 const servicioDelete = async (req, res) => {
-    const {_id} = req.query
+    const {_id} = req.body
     let messagge = 'Eliminacion Exitosa';
     try{
         const servicio = await ServicioModelo.deleteOne({_id: _id})
