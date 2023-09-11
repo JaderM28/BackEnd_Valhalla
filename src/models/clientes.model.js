@@ -14,7 +14,8 @@ const ClienteSchema = Schema({
     },
     telefono: {
         type: String,
-        required: [true, 'El Campo \'Telefono\' es Obligatorio']
+        required: [true, 'El Campo \'Telefono\' es Obligatorio'],
+        unique: true
     },
     tipoDocumento: {
         type: String,

@@ -27,7 +27,6 @@ const EmpleadoSchema = Schema({
     },
     genero: {
         type: String,
-        default: true,
         required: [true, 'El Campo \'Genero\' es Obligatorio'],
         enum: ['Masculino', 'Femenino']
     },
