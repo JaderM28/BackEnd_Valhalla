@@ -28,7 +28,7 @@ const ClienteSchema = Schema({
     genero: {
         type: String,
         required: [true, 'El Campo \'Genero\' es Obligatorio'],
-        enum: ['masculino', 'femenino']
+        enum: ['Masculino', 'Femenino']
     },
     direccion: {
         type: String,
