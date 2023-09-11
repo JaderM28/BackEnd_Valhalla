@@ -15,22 +15,21 @@ const EmpleadoSchema = Schema({
     telefono: {
         type: String,
         required: [true, 'El Campo \'Telefono\' es Obligatorio'],
-        unique: true
     },
     tipoDocumento: {
         type: String,
-        required: [true, 'El Campo \'TipoDocumento\' es Obligatorio'],
-        unique: true
+        required: [true, 'El Campo \'TipoDocumento\' es Obligatorio']
     },
     numeroDocumento: {
         type: String,
-        required: [true, 'El Campo \'NumeroDocumento\' es Obligatorio']
+        required: [true, 'El Campo \'NumeroDocumento\' es Obligatorio'],
+        unique: true
     },
     genero: {
         type: String,
         default: true,
         required: [true, 'El Campo \'Genero\' es Obligatorio'],
-        enum: ['masculino', 'femenino']
+        enum: ['Masculino', 'Femenino']
     },
     direccion: {
         type: String,
