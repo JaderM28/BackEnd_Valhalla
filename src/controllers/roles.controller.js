@@ -13,7 +13,7 @@ const rolGet = async(req, res) => {
 const rolPost = async(req, res) => {
     let messagge = 'Insercion Exitosa';
     try{
-        const roles = new RolModelo(req.query);
+        const roles = new RolModelo(req.body);
         await roles.save();
     }catch(error){
         messagge = error;
@@ -26,7 +26,7 @@ const rolPost = async(req, res) => {
 // Funcion Put
 const rolPut = async(req, res) => {
     let messagge = 'Modificacion Exitosa';
-    const {_id, nombreRol, descripcion, permisos, estado} = req.query
+    const {_id, nombreRol, descripcion, permisos, estado} = req.body
     try{
         await RolModelo.updateMany(
             {_id:_id}, 
@@ -45,7 +45,7 @@ const rolPut = async(req, res) => {
 
 // Funcion Delete
 const rolDelete = async (req, res) => {
-    const {_id} = req.query
+    const {_id} = req.body
     let messagge = 'Eliminacion Exitosa';
     try{
         const roles = await RolModelo.deleteOne({_id: _id})
