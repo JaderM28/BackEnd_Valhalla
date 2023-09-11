@@ -13,7 +13,7 @@ const clienteGet = async(req, res) => {
 const clientePost = async(req, res) => {
     let messagge = 'Insercion Exitosa';
     try{
-        const clientes = new ClienteModelo(req.query);
+        const clientes = new ClienteModelo(req.body);
         await clientes.save();
     }catch(error){
         messagge = error;
@@ -26,7 +26,7 @@ const clientePost = async(req, res) => {
 // Funcion Put
 const clientePut = async(req, res) => {
     let messagge = 'Modificacion Exitosa';
-    const {_id, nombres, apellidos, telefono, tipoDocumento, numeroDocumento, genero, direccion, fechaNacimiento} = req.query
+    const {_id, nombres, apellidos, telefono, tipoDocumento, numeroDocumento, genero, direccion, fechaNacimiento} = req.body
     try{
         await ClienteModelo.updateMany(
             {_id:_id}, 
@@ -48,7 +48,7 @@ const clientePut = async(req, res) => {
 
 // Funcion Delete
 const clienteDelete = async (req, res) => {
-    const {_id} = req.query
+    const {_id} = req.body
     let messagge = 'Eliminacion Exitosa';
     try{
         const clientes = await ClienteModelo.deleteOne({_id: _id})
