@@ -13,7 +13,7 @@ const categoriaGet = async(req, res) => {
 const categoriaPost = async(req, res) => {
     let messagge = 'Insercion Exitosa';
     try{
-        const categoria = new CategoriaModelo(req.query);
+        const categoria = new CategoriaModelo(req.body);
         await categoria.save();
     }catch(error){
         messagge = error;
@@ -26,7 +26,7 @@ const categoriaPost = async(req, res) => {
 // Funcion Put
 const categoriaPut = async(req, res) => {
     let messagge = 'Modificacion Exitosa';
-    const {_id, nombre, descripcion, estado, observaciones, codigoCategoria} = req.query
+    const {_id, nombre, descripcion, estado, observaciones, codigoCategoria} = req.body
     try{
         await CategoriaModelo.updateMany(
             {_id:_id}, 
@@ -46,7 +46,7 @@ const categoriaPut = async(req, res) => {
 
 // Funcion Delete
 const categoriaDelete = async (req, res) => {
-    const {_id} = req.query
+    const {_id} = req.body
     let messagge = 'Eliminacion Exitosa';
     try{
         const categoria = await CategoriaModelo.deleteOne({_id: _id})
