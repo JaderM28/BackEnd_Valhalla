@@ -19,7 +19,7 @@ const ClienteSchema = Schema({
     },
     tipoDocumento: {
         type: String,
-        required: [true, 'El Campo \'tipoDocumento\' es Obligatorio'],
+        required: [true, 'El Campo \'tipoDocumento\' es Obligatorio']
     },
     numeroDocumento: {
         type: String,
