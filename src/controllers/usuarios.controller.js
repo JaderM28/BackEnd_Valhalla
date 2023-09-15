@@ -12,10 +12,19 @@ const usuarioGet = async(req, res) => {
 
 const usuarioGetID = async(req, res) => {
     const {_id} = req.body
-    const usuarioID = await UsuarioModelo.findById(id);
-    res.json({
-        usuarioID
-    });
+
+    
+    try{
+        const usuarioID = await UsuarioModelo.findById(id);
+
+        res.json({
+            usuarioID
+        });
+    }catch(error){
+        console.log(error)
+    }
+    
+    
 }
     
 
