@@ -1,5 +1,6 @@
 // Importamos los Modelos 
 const UsuarioModelo = require('../models/usuarios.model')
+const bcrypt = require('bcrypt')
 
 // Funcion Get  Mostrar
 const usuarioGet = async(req, res) => {
@@ -12,12 +13,16 @@ const usuarioGet = async(req, res) => {
 // Funcion Post  Insertar
 const usuarioPost = async(req, res) => {
     let messagge = 'Insercion Exitosa';
+
     try{
-        const usuario = new UsuarioModelo(req.body);
-        await usuario.save();
+        const usuarios = new UsuarioModelo(req.body);
+        const salt = 10 //vueltas
+        usuarios.password = bcrypt.hashSync(req.body.password,salt)
+        await usuarios.save();
 
     }catch(error){
         messagge = error;
+        console.log(error)
     }
     res.json({
         msg: messagge

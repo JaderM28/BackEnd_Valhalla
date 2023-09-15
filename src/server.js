@@ -18,6 +18,7 @@ class Server{
 
         this.app = express(),
         this.port = process.env.PORT,
+        this.authPath = '/ruta/auth',
         this.usuarioPath = '/ruta/usuarios',
         this.empleadoPath = '/ruta/empleados',
         this.clientePath = '/ruta/clientes',
@@ -27,7 +28,7 @@ class Server{
         this.rolPath = '/ruta/roles',
         this.reservaPath = '/ruta/reservas',
         this.conectarDB(),
-        this.middlewares();
+        this.middlewares();//puentes de conexion html, front end y backend
         this.routes()
     }
     listen(){
@@ -36,6 +37,7 @@ class Server{
         })
     }
     routes(){
+        this.app.use(this.authPath, require('./routes/auth.route'))
         this.app.use(this.usuarioPath, require('./routes/usuarios.route'))
         this.app.use(this.empleadoPath, require('./routes/empleados.route'))
         this.app.use(this.clientePath, require('./routes/clientes.route'))
