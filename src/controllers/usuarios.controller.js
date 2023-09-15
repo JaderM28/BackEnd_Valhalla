@@ -10,22 +10,21 @@ const usuarioGet = async(req, res) => {
     });
 }
 
-const usuarioGetID = async(req, res) => {
-    const {_id} = req.body
+const usuarioGetID = async (req, res) => {
+    const { id } = req.params; 
 
-    
-    try{
+    try {
         const usuarioID = await UsuarioModelo.findById(id);
 
-        res.json({
-            usuarioID
-        });
-    }catch(error){
-        console.log(error)
+        if (!usuarioID) {
+            return res.status(404).json({ mensaje: 'Usuario no encontrado' });
+        }
+        res.json({ usuarioID });
+    } catch (error) {
+        console.error('Error al buscar usuario por ID:', error);
+        res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
-    
-    
-}
+};
     
 
 // Funcion Post  Insertar
