@@ -8,7 +8,7 @@ const route = Router()
 const {usuarioGet, usuarioGetID, usuarioPost, usuarioPut, usuarioDelete} = require('../controllers/usuarios.controller')
 
 route.get('/', usuarioGet);
-route.get('/id', usuarioGetID);
+route.get('/:id', usuarioGetID);
 route.post('/', usuarioPost);
 route.put('/', usuarioPut);
 route.delete('/', usuarioDelete);
