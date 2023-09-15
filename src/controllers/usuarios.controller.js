@@ -10,6 +10,15 @@ const usuarioGet = async(req, res) => {
     });
 }
 
+const usuarioGetID = async(req, res) => {
+    const {_id} = req.body
+    const usuarioID = await UsuarioModelo.findById(id);
+    res.json({
+        usuarioID
+    });
+}
+    
+
 // Funcion Post  Insertar
 const usuarioPost = async(req, res) => {
     let messagge = 'Insercion Exitosa';
@@ -68,5 +77,6 @@ module.exports = {
     usuarioGet,
     usuarioPost,
     usuarioPut,
-    usuarioDelete
+    usuarioDelete,
+    usuarioGetID
 }
