@@ -9,6 +9,22 @@ const clienteGet = async(req, res) => {
     });
 }
 
+const clienteGetID = async (req, res) => {
+    const { id } = req.params; 
+
+    try {
+        const clienteID = await ClienteModelo.findById(id);
+
+        if (!clienteID) {
+            return res.status(404).json({ mensaje: 'Cliente no encontrado' });
+        }
+        res.json({ clienteID });
+    } catch (error) {
+        console.error('Error al buscar cliente por ID:', error);
+        res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
+};
+
 // Funcion Post 
 const clientePost = async(req, res) => {
     let messagge = 'Insercion Exitosa';
@@ -66,5 +82,6 @@ module.exports = {
     clienteGet,
     clientePost,
     clientePut,
-    clienteDelete
+    clienteDelete,
+    clienteGetID
 }

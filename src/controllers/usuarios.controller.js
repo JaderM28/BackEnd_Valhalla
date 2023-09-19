@@ -38,8 +38,8 @@ const usuarioPost = async(req, res) => {
         await usuarios.save();
 
     }catch(error){
-        messagge = error;
-        console.log(error)
+        console.error('Error al insetar usuarios:', error)
+        res.status(500).json({msg: 'Error interno del servidor'})
     }
     res.json({
         msg: messagge

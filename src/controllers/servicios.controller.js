@@ -9,6 +9,23 @@ const servicioGet = async(req, res) => {
     });
 }
 
+//Funcion Get ID
+const servicioGetID = async (req, res) => {
+    const { id } = req.params; 
+
+    try {
+        const servicioID = await ServicioModelo.findById(id);
+
+        if (!servicioID) {
+            return res.status(404).json({ mensaje: 'Servicio no encontrado' });
+        }
+        res.json({ servicioID });
+    } catch (error) {
+        console.error('Error al buscar Servicio por ID:', error);
+        res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
+};
+
 // Funcion Post 
 const servicioPost = async(req, res) => {
     let messagge = 'Insercion Exitosa';
@@ -64,5 +81,6 @@ module.exports = {
     servicioGet,
     servicioPost,
     servicioPut,
-    servicioDelete
+    servicioDelete,
+    servicioGetID
 }

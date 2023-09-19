@@ -5,9 +5,10 @@ const route = Router()
 
 // Importamos Metodos Controlador
 
-const {categoriaGet, categoriaPost, categoriaPut, categoriaDelete} = require('../controllers/categorias.controller')
+const {categoriaGet, categoriaPost, categoriaPut, categoriaDelete, categoriaGetID} = require('../controllers/categorias.controller')
 
 route.get('/', categoriaGet);
+route.get('/:id', categoriaGetID);
 route.post('/', categoriaPost);
 route.put('/', categoriaPut);
 route.delete('/', categoriaDelete);

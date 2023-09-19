@@ -9,6 +9,22 @@ const categoriaGet = async(req, res) => {
     });
 }
 
+const categoriaGetID = async (req, res) => {
+    const { id } = req.params; 
+
+    try {
+        const categoriaID = await CategoriaModelo.findById(id);
+
+        if (!categoriaID) {
+            return res.status(404).json({ mensaje: 'Categoria no encontrado' });
+        }
+        res.json({ categoriaID });
+    } catch (error) {
+        console.error('Error al buscar Categoria por ID:', error);
+        res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
+};
+
 // Funcion Post 
 const categoriaPost = async(req, res) => {
     let messagge = 'Insercion Exitosa';
@@ -64,5 +80,6 @@ module.exports = {
     categoriaGet,
     categoriaPost,
     categoriaPut,
-    categoriaDelete
+    categoriaDelete,
+    categoriaGetID
 }

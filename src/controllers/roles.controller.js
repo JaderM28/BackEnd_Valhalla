@@ -9,6 +9,23 @@ const rolGet = async(req, res) => {
     });
 }
 
+// Funcion 
+const rolGetID = async (req, res) => {
+    const { id } = req.params; 
+
+    try {
+        const rolID = await RolModelo.findById(id);
+
+        if (!rolID) {
+            return res.status(404).json({ mensaje: 'Rol no encontrado' });
+        }
+        res.json({ rolID });
+    } catch (error) {
+        console.error('Error al buscar Rol por ID:', error);
+        res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
+};
+
 // Funcion Post 
 const rolPost = async(req, res) => {
     let messagge = 'Insercion Exitosa';
@@ -63,5 +80,6 @@ module.exports = {
     rolGet,
     rolPost,
     rolPut,
-    rolDelete
+    rolDelete,
+    rolGetID
 }

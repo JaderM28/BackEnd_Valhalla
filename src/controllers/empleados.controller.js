@@ -9,9 +9,25 @@ const empleadoGet = async(req, res) => {
     });
 }
 
+const empleadoGetID = async (req, res) => {
+    const { id } = req.params; 
+
+    try {
+        const empleadoID = await EmpleadoModelo.findById(id);
+
+        if (!empleadoID) {
+            return res.status(404).json({ mensaje: 'Empleado no encontrado' });
+        }
+        res.json({ empleadoID });
+    } catch (error) {
+        console.error('Error al buscar Empleado por ID:', error);
+        res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
+};
+
 // Funcion Post 
 const empleadoPost = async(req, res) => {
-    let messagge = 'Insercion Exitosa';
+    let messagge = 'Empleado Insertado con Exito';
     try{
         const empleados = new EmpleadoModelo(req.body);
         await empleados.save();
@@ -25,7 +41,7 @@ const empleadoPost = async(req, res) => {
 
 // Funcion Put
 const empleadoPut = async(req, res) => {
-    let messagge = 'Modificacion Exitosa';
+    let messagge = 'Empleado Modificado con Exito';
     const {_id, nombres, apellidos, telefono, tipoDocumento, numeroDocumento, genero, direccion, fechaNacimiento} = req.body
     try{
         await EmpleadoModelo.updateMany(
@@ -49,7 +65,7 @@ const empleadoPut = async(req, res) => {
 // Funcion Delete
 const empleadoDelete = async (req, res) => {
     const {_id} = req.body
-    let messagge = 'Eliminacion Exitosa';
+    let messagge = 'Empleado Eliminado con Exito';
     try{
         const empleados = await EmpleadoModelo.deleteOne({_id: _id})
 
@@ -66,5 +82,6 @@ module.exports = {
     empleadoGet,
     empleadoPost,
     empleadoPut,
-    empleadoDelete
+    empleadoDelete,
+    empleadoGetID
 }
